@@ -1,12 +1,12 @@
 require 'date'
 
 class Person
-	@id = 0
-	@name = ""    
-	@salary = 0.0    	
-	@gender = ""          
-	@position = "" 
-	@hiredate = "" 
+	$id = 0
+	$name = ""    
+	$salary = 0.0    	
+	$gender = ""          
+	$position = "" 
+	$hiredate = "" 
 
 	$EmpList2014 = Array.new();
 	$MaleList =  Array.new();
@@ -15,12 +15,12 @@ class Person
 	$FemaleHiredate = ""
 
 	def initialize (id, name, salary, gender, position, hiredate)
-		@id = id 
-		@name = name
-		@salary = salary
-		@gender = gender				
-		@position = position
-		@hiredate = hiredate		
+		$id = id 
+		$name = name
+		$salary = salary
+		$gender = gender				
+		$position = position
+		$hiredate = hiredate		
 	end
 	
 	# Displays Hiredate for women with highest salary (with and without formater)
@@ -43,13 +43,13 @@ class Person
 	def EmpList2014()
 		puts ""
 		puts "Generating List of Persons hired in the year 2014\n"
-		count = @id.size
+		count = $id.size
 		yeartocompare = 2014
 		if(count > 0)
 			while count > 0 do
 				count = count-1		
-				if Date.parse(@hiredate[count].to_s).year == yeartocompare
-					$EmpList2014.push(@id[count])
+				if Date.parse($hiredate[count].to_s).year == yeartocompare
+					$EmpList2014.push($id[count])
 				end	
 			end
 		end	
@@ -65,7 +65,7 @@ class Person
 		count = 0;
 		while count < $EmpList2014.count
 			index = ($EmpList2014[count].to_i)-1
-			case @gender[index]
+			case $gender[index]
 			when "M"
 				$MaleList.push(index)
 			when "F"
@@ -85,7 +85,7 @@ class Person
 		temp_index = 0		
 		sal = Array.new();		
 		empTop10List = Array.new()
-		sal = @salary.dup
+		sal = $salary.dup
 
 		while empTop10List.count < 10  do
 			while count < list2014.count do 
@@ -114,13 +114,13 @@ class Person
 		index = list[0].to_i;
 		index2 = 0
 		puts ""
-		if @gender[list[index2].to_i] = "F"
-			$FemaleHighSalary = @salary[list[index2].to_i]
-			$FemaleHiredate = @hiredate[list[index2].to_i]
+		if $gender[list[index2].to_i] = "F"
+			$FemaleHighSalary = $salary[list[index2].to_i]
+			$FemaleHiredate = $hiredate[list[index2].to_i]
 		end	
 		while index2 < list.count
 			index = list[index2].to_i				
-			puts "#{@name[index]} ($#{@salary[index]})"
+			puts "#{$name[index]} ($#{$salary[index]})"
 			index2 = index2 + 1
 		end		
 	end
